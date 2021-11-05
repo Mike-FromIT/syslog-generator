@@ -10,7 +10,7 @@ MESSAGES=("Error Event" "Warning Event" "Info Event")
 SLEEP_SECS=1
 # How many message to send at a time.
 COUNT=1
-# What priority?  
+# What priority?
 #             emergency   alert   critical   error   warning   notice   info   debug
 # kernel              0       1          2       3         4        5      6       7
 # user                8       9         10      11        12       13     14      15
@@ -45,7 +45,7 @@ do
 		# Picks a random syslog message from the list.
 		RANDOM_MESSAGE=${MESSAGES[$RANDOM % ${#MESSAGES[@]} ]}
 		PRIORITY=${PRIORITIES[$RANDOM % ${#PRIORITIES[@]} ]}
-		$NC $DEST_IP -u 514 -w 0 <<< "<$PRIORITY>`env LANG=us_US.UTF-8 date "+%b %d %H:%M:%S"` $ORIG_IP service: $RANDOM_MESSAGE"
+		$NC $DEST_IP -u 514 -w 1 <<< "<$PRIORITY>`env LANG=us_US.UTF-8 date "+%b %d %H:%M:%S"` $ORIG_IP service: $RANDOM_MESSAGE"
 	done
 	sleep $SLEEP_SECS
 done
